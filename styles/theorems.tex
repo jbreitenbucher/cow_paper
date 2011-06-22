@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%This is where one would tell \LaTeX{} how to format Theorems, Definitions, etc. and also %indicate the environment names. You need the amsthm package (loaded in the woosterthesis %class) in order for these commands to work.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% an example of defining your own theoremstyle
+%\newtheoremstyle{break}% name
+%  {\topsep}%      Space above
+%  {\topsep}%      Space below
+%  {\itshape}%         Body font
+%  {}%         Indent amount (empty = no indent, \parindent = para indent)
+%  {\bfseries}% Thm head font
+%  {.}%        Punctuation after thm head
+%  {\newline}%     Space after thm head: " " = normal interword space;
+%        %       \newline = linebreak
+%  {}%         Thm head spec (can be left empty, meaning `normal')
+% Kyle Kindbom requested a theorem style where the theorem header was on a
+% separate line.
+% The break theorem style will put a line break after the theorem header. - JB
+\newtheoremstyle{break}% name
+  {\topsep}%      Space above
+  {\topsep}%      Space below
+  {\itshape}%     Body font
+  {}%             Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}%    Theorem head font
+  {.}%            Punctuation after thm head
+  {\newline}%     Space after theorem head: " " = normal interword space;
+            %     \newline = linebreak
+  {}%             Theorem head spec (can be left empty, meaning `normal')
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{scthm}{\topsep}{\topsep}{\itshape}{}{\bfseries\scshape}{}{ }{}
+\newtheoremstyle{itdefn}{\topsep}{\topsep}{\itshape}{}{\bfseries}{.}{ }{}
+\newtheoremstyle{scdefn}{\topsep}{\topsep}{\itshape}{}{}{}{ }{\thmname{\textbf{#1}}\thmnumber{ \textbf{#2}}\thmnote{ \scshape #3:}}
+\theoremstyle{break}
+\newtheorem{thm}{Theorem}[section]% create a short command for theorems and number them within sections 
+\newtheorem{cor}[thm]{Corollary}% create a short command for corollaries and number with theorems
+\newtheorem{lem}[thm]{Lemma}% create a short command for lemmas and number with theorems
+\newtheorem{prop}[thm]{Proposition}% create a short command for propositions and number with theorems
+\theoremstyle{definition}% change the theorem styling
+\newtheorem{defn}{Definition}[section]% create a short command for definitions and number within sections
+\newtheorem{ex}{Example}% create a short command for examples and number within sections
+\newtheorem{exer}{Exercise}% create a short command for exercises and number within the document
+\theoremstyle{remark}% change the theorem styling
+\newtheorem{rem}{Remark}[section]% create a short command for remarks and number within sections
+\renewcommand{\therem}{}% set the counter for remarks
+\theoremstyle{plain}% change the theorem styling
+\newtheorem{note}{Notation}[section]% create a short command for notation and number within sections
+\renewcommand{\thenote}{}% set the counter for notation
+\newtheorem{nts}{Note to self}% create a short command for notes to self and number within the document
+\renewcommand{\thents}{}% set the counter for note to self
+\newtheorem{term}{Terminology}[section]% create a short command for terminology and number within sections
+\renewcommand{\theterm}{}% set the counter for terminology
+
+\theoremstyle{itdefn}
+\newtheorem{bdefn}{Definition}[section]
+\newsavebox{\fmbox} 
+\newenvironment{boxeddefn}[2] 
+{\begin{lrbox}{\fmbox}\begin{minipage}{0.9 \linewidth }\begin{singlespace}\begin{bdefn}[{#1}]\label{#2}\vspace{0.2cm}} 
+{\end{bdefn}\end{singlespace}\end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}}

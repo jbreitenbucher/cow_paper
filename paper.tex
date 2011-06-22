@@ -1,0 +1,370 @@
+\documentclass[10pt,code,backlinks,palatino,blacklinks,picins,maple,verbatim,dropcaps,alltt]{woosterpaper} % this shows all of the options specific to the woosterpaper class. It also accepts all options for the AMS article class.
+%\def\publname{Abstract Algebra Assignmnet}% for use in the production of a class proceedings
+%\copyrightinfo{2007} % copyright year for proceedings use
+%{The College of Wooster}% copyright holder
+%\issueinfo{1}{1}{10}{2007}
+%\pagespan{1}{15}
+\author{Jon Breitenbucher, Ph.~D.}
+\title{A sample paper}
+\graphicspath{{./figures/}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                                                    Load Packages
+%
+%   To load packages in addition to the ones that are loaded by default, please place your
+%   usepackage commands in the packages.tex file in the styles folder.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{styles/packages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                                                Load Personal commands
+%                                                                    
+%There will be certain commands that you use frequently in the thesis. You can give these %commands new names which are easier for you to remember. You can also combine several %commands into a new command of your own. See The LaTeX Companion or Guide to LaTeX %for examples on defining your own commands. These are commands that I defined to cut %down on typing. You can enter your commands in the personal.tex file in the styles folder.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{styles/personal}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                                             Load Theorem formatting information
+%
+%  If you need to define an new theorem style or want to see what theorem like environments 
+%  are available please look at the theorems.tex file in the styles folder.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{styles/theorems}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                                             Beginning of the Document
+%
+%  
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\begin{abstract}
+This is a template for doing a paper using \LaTeX.
+\end{abstract}
+\maketitle
+\numberwithin{lstlisting}{section}% listings are numbered within sections
+\lstset{
+        language =[ANSI]C++, % pick a language style
+        linewidth=.95\textwidth, breaklines=true, commentstyle=\textit,
+        stringstyle=\upshape, showspaces=false, numbers=left,
+        numberstyle=\tiny, basicstyle=\small, xleftmargin=30pt,
+        breakautoindent=true, captionpos=b
+        }
+%        
+I want to start off with some of the basics. You can get a better idea of how to use \LaTeX{} by reading \href{http://jbreitenbuch.wooster.edu/~jonb/latex/pdf/IS\_guide.pdf}{IS\_guide.pdf}. 
+%      
+\section{In the beginning: Knuth said ``Let there be \TeX''}\label{text}
+
+``So how do I use \LaTeX?'' Well let's start with some basic things. First, how is a document structured in \LaTeX?
+
+A \emph{document} for \LaTeX{} is all the stuff that comes between the \verb|\begin{document}| and \verb|\end{document}| tags. The\verb| paper.tex| file has the \verb|\begin{document}| and \verb|\end{document}| tags. I should also mention that the \% symbol is used for comments. The \verb|paper.tex| file has a number of comments that are intended for you and try to explain what is happening. Oh, and if you need a \% symbol enter \verb+\%+.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \texttt{$\backslash$section[My new section]\{An example of making a new section and giving it a short name\}} (the part in square brackets is optional) and get
+
+\section[My new section]{An example of making a new section and giving it a short name}\label{sec:newsec}
+
+The subsection command works in exactly the same manner. Each new section must have \texttt{$\backslash$section[short name]\{section name\}} as its first line.
+
+``Hey, wait a minute. What if I need to refer to that section? How can I do that?'' It's actually as simple as adding\verb+\label{labelname}+ at the end of the section command like\texttt{$\backslash$section[My new section]\{An example of making a new section and giving it a short name\}$\backslash$label\{sec:newsec\}}. Now I can refer to Section \ref{sec:newsec} by typing \verb+\ref{sec:newsec}+. You can label just about anything and refer to the label to get an automatically generated number for the item. This means that you need to come up with a labeling scheme before you start writing and stick with it.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+For example I can use \texttt{emph} or \texttt{textit} to italicize text. To italicize homework I would enter \verb|\emph{homework}| or \verb|\textit{homework}| to produce \textit{homework}. To obtain \textbf{bold} text you would use the \texttt{textbf} command. And what about lists?
+
+There are several kinds of lists (enumerated, itemized, and descriptive) and each has its own place and environment. An enumerated list is good for outlining or ordered lists:
+
+\begin{singlespace}
+\begin{verbatim}
+\begin{enumerate}
+\item First main idea
+\begin{enumerate}
+\item First subpoint
+\item\label{enum:1b} Second subpoint
+\end{enumerate}
+\item Second main idea
+\end{enumerate}
+\end{verbatim}
+\end{singlespace}
+\begin{enumerate}
+\item First main idea
+\begin{enumerate}
+\item First subpoint
+\item\label{enum:1b} Second subpoint
+\end{enumerate}
+\item Second main idea
+\end{enumerate}
+The itemized list is good for unordered lists or bullet points:
+
+\begin{singlespace}
+\begin{verbatim}
+\begin{itemize}
+\item Idea
+\item Idea
+\item Idea
+\item Idea
+\end{itemize}
+\end{verbatim}
+\end{singlespace}
+\begin{itemize}
+\item Idea
+\item Idea
+\item Idea
+\item Idea
+\end{itemize}
+And the descriptive list is good for definitions; however, \texttt{amsthm} already has a definition environment, and you will most likely not need the description environment. In any event, here is an example:
+
+\begin{singlespace}
+\begin{verbatim}
+\begin{description}
+\item[First item:] Idea
+\item[Second item:] Idea
+\item[Third item:] Idea
+\end{description}
+\end{verbatim}
+\end{singlespace}
+\begin{description}
+\item[First item:] Idea
+\item[Second item:] Idea
+\item[Third item:] Idea
+\end{description}
+Notice the use of brackets in the last example. The brackets are optional and the text in the brackets is used as the label for the item. You should also note that you can label an item for later reference see \ref{enum:1b}. There are several options for changing the format of the list environments and a package, \texttt{paralist}, for customizing lists which are described in section 3.3 of \citet{mgbcr04}.
+
+\section{Theorems, definitions, examples, oh my!}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Putting code in the main body of the thesis}
+There is one last textual item which Computer Science majors and probably some Mathematics majors will need to incorporate, pseudocode. Below is an example set up for the \texttt{listings} package.
+\lstset{
+               language =Pascal, % pick a language style
+               emph={return,natural, numbers, integers, increasing},
+               emphstyle={\bfseries},% choose other keywords and a format
+               linewidth=.95\textwidth, breaklines=true, commentstyle=\textit,
+               stringstyle=\upshape, showspaces=false, numbers=left,
+               numberstyle=\tiny, basicstyle=\small, xleftmargin=30pt,
+               breakautoindent=true, captionpos=b
+               }
+{\small\begin{singlespace}
+\begin{verbatim}
+\lstset{
+        language =Pascal, % pick a language style
+        emph={return,natural, numbers, integers, increasing},
+        emphstyle={\bfseries},% choose other keywords and a format
+        linewidth=.95{\textwidth}, breaklines=true,commentstyle=\textit,
+        stringstyle=\upshape,showspaces=false,numbers=left,
+        numberstyle=\tiny,basicstyle=\small,xleftmargin=30pt,
+        breakautoindent=true,captionpos=b
+        }
+\end{verbatim}
+\end{singlespace}}
+
+The listing in Listing~\ref{largesteven} gives an algorithm for finding the largest even integer in a given list of $n$ integers. I have used the \texttt{mathescape} option to be able to incorporate mathematics in the listing. The actual code put in the thesis is given first and the formatted output follows.
+
+{\small\begin{singlespace}
+\begin{verbatim}
+\begin{lstlisting}[mathescape, caption= Find the location 
+of the largest even integer in a list,label=largesteven]
+procedure $largestevenlocation$($a_1, a_2, \ldots, a_n$: integers)
+$k$:=0
+$largest$:=-$\infty$
+for $i$:=1 to $n$
+  if ($a_i$ is even and $a_i>largest$) then
+  begin
+    $k$:=$i$
+    $largest$:=$a_i$
+  end
+end
+return $k$
+\end{lstlisting}
+\end{verbatim}
+\end{singlespace}
+}
+\begin{singlespace}
+\begin{lstlisting}[mathescape, caption= Find the location
+ of the largest even integer in a list,label=largesteven]
+procedure $largestevenlocation$($a_1, a_2, \ldots, a_n$: integers)
+$k$:=0
+$largest$:=-$\infty$
+for $i$:=1 to $n$
+  if ($a_i$ is even and $a_i>largest$) then
+  begin
+    $k$:=$i$
+    $largest$:=$a_i$
+  end
+end
+return $k$
+\end{lstlisting}
+\end{singlespace}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\section{Working with figures and tables}\label{graphics}
+
+\subsection{Getting a simple figure in the document}
+
+In this chapter we want to talk about including figures and tables in the document. To insert a simple figure you can enter something like
+\begin{singlespace}
+\begin{verbatim}
+\begin{figure}[!ht]
+\begin{center}
+\woopic{picture3}{.8}
+\end{center}
+\caption{Our first
+ picture}\label{first}
+\end{figure}
+\end{verbatim}
+\end{singlespace}
+\begin{figure}[!ht]
+\rightline{
+\begin{minipage}{.5\textwidth}
+\begin{center}
+\woopic{picture3}{.8}
+\caption{Our first picture}\label{first}
+\end{center}
+\end{minipage}
+}
+\end{figure}
+
+The \verb|!ht| tell \LaTeX{} to try and place the figure here no matter what or at the top of the next page. The \verb|\woopic| command takes the name of the picture as the first argument and the scaling factor as the second argument. The scaling factor must be between zero and one and the figure name must have \emph{no spaces}. Your figures can be in one of three formats: jpg, tif, or pdf. Captions are placed below the figure and your label should be placed after the caption.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+\subsection{Tables}
+
+Tables are fairly easy to set up. Here is a simple table
+\begin{singlespace}
+\begin{verbatim}
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{c c}
+  $\underline{\textnormal{District}}$ &  
+  $\underline{\textnormal{Population}}$\\
+   Applewood & 8280 \\
+   Boxwood & 4600  \\
+   Central & 5220
+   \end{tabular}\caption{Our first table}
+   \end{center}
+\end{table}
+\end{verbatim}
+\end{singlespace}
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{c c}
+  $\underline{\textnormal{District}}$ &
+    $\underline{\textnormal{Population}}$\\
+   Applewood & 8280 \\
+   Boxwood & 4600  \\
+   Central & 5220
+   \end{tabular}\caption{Our first table}
+   \end{center}
+\end{table}
+
+In \verb|\begin{tabular}{c c}| the two ``c''s indicate that we have two columns with centered entries and no lines dividing cells or around the table. I can make the table look more like a spreadsheet by doing
+\begin{singlespace}
+\begin{verbatim}
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+  {\textnormal{District}} &  
+  {\textnormal{Population}}\\ \hline
+   Applewood & 8280 \\ \hline
+   Boxwood & 4600  \\ \hline
+   Central & 5220\\ \hline
+   \end{tabular}\caption{Our first table again}
+   \end{center}
+\end{table}
+\end{verbatim}
+\end{singlespace}
+\begin{table}[!ht]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+  {\textnormal{District}} &  
+  {\textnormal{Population}}\\ \hline
+   Applewood & 8280 \\ \hline
+   Boxwood & 4600  \\ \hline
+   Central & 5220\\ \hline
+   \end{tabular}\caption{Our first table again}
+   \end{center}
+\end{table}
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Please refer to Chapter 6 of \citet{kd03} for a complete discussion of tables and tabular environments.
+
+\section{Working with bibliographies and indicies}\label{bibind}
+
+I would highly recommend that you use Bib\TeX{} to create your bibliography. Bib\TeX{} processes a special .bib file. The .bib file is where you enter your bibliographic information. A sample entry looks something like
+\begin{singlespace}
+\begin{verbatim}
+@article{feu02,
+author=		{Thomas~Feuerstack},
+title=			{Introduction to pdf{\TeX{}}}, 
+journal=		{TUGboat}, 
+volume=		{23},
+pages=		{329--334},
+number=		{3/4},
+url=			{http://www.tug.org/TUGboat/Articles/tb23-3-4/tb75feu.pdf},
+year=			2002}
+\end{verbatim}
+\end{singlespace}
+or
+\begin{singlespace}
+\begin{verbatim}
+@book{mgbcr04,
+author=			{Frank~Mittelbach and Michel~Goossens and
+Johannes~Braams and David~Carlisle and Chris~Rowley},
+title=				{The \LaTeX\ Companion},
+publisher=			{Addison Wesley Professional},
+edition=			{2nd},
+address=			{New York},
+year=				2004}
+\end{verbatim}
+\end{singlespace}
+
+For a Web site I would recommend the following
+\begin{singlespace}
+\begin{verbatim}
+@misc{brei04,
+author = 			{Jon~Breitenbucher},
+title = 				{{W}ooster related {L}a{T}e{X} files},
+url = 				{http://jbreitenbuch.wooster.edu/~jonb/latex/},
+howpublished=	{World Wide Web},
+year=				2004,
+note = 			{Accessed on 03/11/2004}}
+\end{verbatim}
+\end{singlespace}
+
+You can make a reference by typing \verb|\citet{mgbcr04}| to produce \citet{mgbcr04}. Other forms for citation include \verb|\citep{mgbcr04}| or  \verb|\citeauthor| \verb|{mgbcr04}| to produce \citep{mgbcr04} or \citeauthor{mgbcr04} respectively. You can consult \citet{kd03} or \citet{mgbcr04} to find out how to format entries in the .bib file and what options each reference type has.
+
+\nocite{*} % This command forces all the bibliography references to be printed -- not just 
+           % those that were explicitly cited in the text.  If you comment this out, the bibliography
+           % will only include cited references.
+\bibliographystyle{plainnat} % please don't change this
+		%\cleardoublepage
+		%\phantomsection
+		%\addcontentsline{toc}{section}{References}
+\bibliography{references} % load our Bibliography file
+
+\end{document}
